@@ -14,26 +14,6 @@ const PageMap: React.FC = () => {
         zoom: 8
     });
 
-    const mapStyle = {
-        sources: {
-            points: {
-                type: 'geojson',
-                data
-            }
-        },
-        layers: [
-            {
-                id: 'my-layer',
-                type: 'circle',
-                source: 'points',
-                paint: {
-                    'circle-color': '#f00',
-                    'circle-radius': 4
-                }
-            }
-        ]
-    }
-
 
     const clusterLayer: any = {
         id: 'clusters',
