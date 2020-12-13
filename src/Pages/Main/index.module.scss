@@ -90,3 +90,11 @@ $bar-height: 48px;
 .content{
     padding-top: 40px;
 }
+
+.timeline{
+    max-width: 1200px;
+    margin: 0 auto;
+    .item{
+        margin-right: 40px;
+    }
+}

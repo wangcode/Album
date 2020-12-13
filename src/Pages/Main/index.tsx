@@ -11,10 +11,12 @@ import SinglePhoto from '../../Components/SinglePhoto';
 import styles from './index.module.scss';
 
 import data from './data.json';
+import Timeline from '../../Components/Timeline';
 
 enum HomeTab {
     Photo,
-    Album
+    Album,
+    Timeline
 }
 
 enum ShowType {
@@ -28,7 +30,7 @@ const PageMain: React.FC = () => {
 
     const [showType, setShowType] = useState(ShowType.Single)
 
-    const [tab, setTab] = useState(HomeTab.Photo);
+    const [tab, setTab] = useState(HomeTab.Timeline);
 
     return (
         <StickyContainer>
@@ -57,19 +59,24 @@ const PageMain: React.FC = () => {
                                     <div className={styles.nav}>
                                         <div onClick={() => setTab(HomeTab.Photo)} className={`${styles.item} ${tab===HomeTab.Photo?styles.active:""}`}>照片</div>
                                         <div onClick={() => setTab(HomeTab.Album)} className={`${styles.item} ${tab===HomeTab.Album?styles.active:""}`}>影集</div>
+                                        <div onClick={() => setTab(HomeTab.Timeline)} className={`${styles.item} ${tab===HomeTab.Timeline?styles.active:""}`}>时间轴</div>
                                     </div>
                                 </div>
                             )
                         }}
                     </Sticky>
-                    <div className={styles.content}>
+                    {tab===HomeTab.Photo && <div className={styles.content}>
                         <div>
-                            {
-                                data.feed.items.map(item => <SinglePhoto photo={item} />)
-                            }
+                            {data.feed.items.map(item => <SinglePhoto key={item.id} photo={item} />)}
                         </div>
-
-                    </div>
+                    </div>}
+                    {tab===HomeTab.Timeline && <div className={styles.content}>
+                        <div className={styles.timeline}>
+                            <div className={styles.item}>
+                                {data.feed.items.map(item => <Timeline item={item} />)}
+                            </div>
+                        </div>
+                    </div>}
                 </div>
 
             </div>

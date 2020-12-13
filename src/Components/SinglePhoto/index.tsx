@@ -30,7 +30,7 @@ interface PhotoMeta {
     equipments: Equipments[];
 }
 
-interface PhotoInfo {
+export interface PhotoInfo {
     id: string;
     colors: string[];
     files: PhotoFile[];
